@@ -28,3 +28,6 @@ You can use whatever you want – seriously. While the Sass version comes with B
 - Run gulp to confirm everything is working
 
 [Read more about how Gulp is used with JointsWP.](http://jointswp.com/docs/gulp/)
+
+### Maxwell files
+- /assets/scss/_main.scss this is the main CSS file.
