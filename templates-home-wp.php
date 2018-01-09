@@ -13,28 +13,24 @@ Template Name: Home WP
             <?php the_content(); ?>
             <div class="mobile-ab"><a href="/request-a-demo" class="button ab-btn btn-maxwell">Request Demo</a> <span class="mobile-ab-remove">Start your free 15 day trial</span></div>
         </div>
-        
+
         <img id="wrap" src="<?php echo get_template_directory_uri(); ?>/assets/images/header-1.png" class="hero-img"  >
 
-       
     </div>
 
 </div>
 
 
-  
+
 
 <div class="home-features">
-    
-    
-
 
     <?php
         $counter = 0;
-        if( have_rows('alternating_teasers') ): 
-        while ( have_rows('alternating_teasers') ) : the_row(); 
+        if( have_rows('alternating_teasers') ):
+        while ( have_rows('alternating_teasers') ) : the_row();
     ?>
-    
+
         <?php if ($counter % 2 === 0) :?>
             <div class="row flexbox-container">
                 <div class="large-6 small-12 columns ">
@@ -42,29 +38,41 @@ Template Name: Home WP
                 </div>
                 <div class="large-6 small-12 columns">
                     <?php if ( get_sub_field( 'teaser_image' ) ) { ?>
-                        <img src="<?php the_sub_field( 'teaser_image' ); ?>" />
+                        <?php
+                        $image_url = get_sub_field( 'teaser_image' );
+                        $image_id = get_image_id( $image_url );
+                        $image_mdlg = wp_get_attachment_image_src( $image_id, 'medium_large' );
+                        $image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true);
+                        ?>
+                        <img src="<?php echo $image_mdlg[0]; ?>" alt="<?php echo $image_alt; ?>" />
                     <?php } ?>
                 </div>
             </div>
         <?php else: ?>
             <div class="row flexbox-container">
-        
+
                 <div class="large-6 large-push-6 small-12 columns">
                     <?php the_sub_field( 'teaser_copy' ); ?>
                 </div>
                 <div class="large-6 large-pull-6 small-12 columns">
                     <?php if ( get_sub_field( 'teaser_image' ) ) { ?>
-                        <img src="<?php the_sub_field( 'teaser_image' ); ?>" />
+                        <?php
+                        $image_url = get_sub_field( 'teaser_image' );
+                        $image_id = get_image_id( $image_url );
+                        $image_mdlg = wp_get_attachment_image_src( $image_id, 'medium_large' );
+                        $image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true);
+                        ?>
+                        <img src="<?php echo $image_mdlg[0]; ?>" alt="<?php echo $image_alt; ?>" />
                     <?php } ?>
 
                 </div>
             </div>
         <?php endif; ?>
-    
-    <?php 
-        $counter++; 
-        endwhile; 
-        endif; 
+
+    <?php
+        $counter++;
+        endwhile;
+        endif;
     ?>
 
 </div>
@@ -76,7 +84,13 @@ Template Name: Home WP
         </div>
         <div class="large-8 columns">
             <?php if ( get_field( 'demo_image' ) ) { ?>
-                <img src="<?php the_field( 'demo_image' ); ?>" />
+                <?php
+                $image_url = get_field( 'demo_image' );
+                $image_id = get_image_id( $image_url );
+                $image_mdlg = wp_get_attachment_image_src( $image_id, 'medium_large' );
+                $image_alt = get_post_meta( $image_id, '_wp_attachment_image_alt', true);
+                ?>
+                <img src="<?php echo $image_mdlg[0]; ?>" alt="<?php echo $image_alt; ?>" />
             <?php } ?>
 
         </div>
@@ -85,7 +99,7 @@ Template Name: Home WP
 <div class="row">
     <div class="large-12 columns text-center pricing-intro">
     <h5>Simple pricing, powerful features</h5>
-    
+
     </div>
 
 </div>
@@ -103,7 +117,7 @@ Template Name: Home WP
             <?php } ?>
             <?php the_field( 'lending_team_copy' ); ?>
         </div>
-    
+
     </div>
 
 
@@ -114,7 +128,11 @@ Template Name: Home WP
         <?php if ( $logo_set_1_images ) :  ?>
             <?php foreach ( $logo_set_1_images as $logo_set_1_image ): ?>
                <div class="large-2 small-6 columns">
-                    <img src="<?php echo $logo_set_1_image['url']; ?>" alt="<?php echo $logo_set_1_image['alt']; ?>" />
+                    <?php
+                    $image_id = get_image_id( $logo_set_1_image['url'] );
+                    $image_thumb = wp_get_attachment_image_src( $image_id, 'medium' );
+                    ?>
+                    <img src="<?php echo $image_thumb[0]; ?>" alt="<?php echo $logo_set_1_image['alt']; ?>" />
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -128,7 +146,8 @@ Template Name: Home WP
         </div>
     </div>
 </div>
-<!--
+
+<?php /*
 <div class="home-stories">
     <div class="row stories-intro">
         <div class="large-12 text-center">
@@ -148,7 +167,8 @@ Template Name: Home WP
         </div>
 
     </div>
-</div> -->
+</div> */ ?>
+
 <div class="teams-logos">
     <div class="row">
         <div class="large-12 columns text-center teams-intro"><h5>Join the many teams on maxwell.</h5></div>
@@ -158,12 +178,16 @@ Template Name: Home WP
         <?php if ( $logo_set_2_images ) :  ?>
             <?php foreach ( $logo_set_2_images as $logo_set_2_image ): ?>
                 <div class="large-3 medium-4 small-6 columns">
-                    <img src="<?php echo $logo_set_2_image['url']; ?>" alt="<?php echo $logo_set_2_image['alt']; ?>" />
+                    <?php
+                    $image_id = get_image_id( $logo_set_2_image['url'] );
+                    $image_thumb = wp_get_attachment_image_src( $image_id, 'medium' );
+                    ?>
+                    <img src="<?php echo $image_thumb[0]; ?>" alt="<?php echo $logo_set_1_image['alt']; ?>" />
                 </div>
             <?php endforeach; ?>
         <?php endif; ?>
-        
-        
+
+
     </div>
 </div>
 
@@ -172,7 +196,7 @@ Template Name: Home WP
         <div class="large-12 columns text-center intro"><h5>Resources for Loan Officers</h5></div>
     </div>
     <div class="row">
-       
+
                 <div class="large-6 medium-6 small-12 columns">
                     <a href="/playbook"><div class="ebook-promo">
                         <span>eBook Download</span>
@@ -180,14 +204,14 @@ Template Name: Home WP
                         <a href="/playbook">Learn More</a>
                         </div></a>
                 </div>
-            
-        
+
+
     </div>
 </div>
 
 
-</div>    
-    
+</div>
+
 </div>
 
 
