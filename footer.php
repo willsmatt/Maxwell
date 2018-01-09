@@ -27,16 +27,8 @@
 				</footer> <!-- end .footer -->
 			</div>  <!-- end .main-content -->
 		</div> <!-- end .off-canvas-wrapper -->
-<script type="text/javascript" src="<?php echo get_template_directory_uri(); ?>/assets/js/jquery.magnific-popup.min.js"></script>
-        
 
-        <script>
-
-        </script>
 		<?php wp_footer(); ?>
-
-
-
 
 	</body>
 </html> <!-- end page -->
