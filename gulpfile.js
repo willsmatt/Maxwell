@@ -15,6 +15,7 @@ var gulp = require("gulp"),
   babel = require("gulp-babel"),
   browserSync = require("browser-sync").create(),
   imagemin = require("gulp-imagemin"),
+  imageminPngquant = require('imagemin-pngquant'),
   changed = require("gulp-changed"),
   imageResize = require("gulp-image-resize");
 
@@ -132,9 +133,9 @@ gulp.task("images:min", function() {
   return gulp.src("./assets/images_raw/**/*")
     .pipe(changed("./assets/images"))
     .pipe(imagemin([
+        imageminPngquant({ quality: 60 }),
         imagemin.gifsicle({ interlaced: true }),
         imagemin.jpegtran({ progressive: true }),
-        imagemin.optipng({ optimizationLevel: 5 }),
         imagemin.svgo({ plugins: [{ removeViewBox: true }, { cleanupIDs: false }]})
     ]))
     .pipe(gulp.dest("./assets/images"));

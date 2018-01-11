@@ -28,6 +28,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.2.0",
     "gulp-util": "^3.0.5",
+    "imagemin-pngquant": "^5.0.1",
     "jshint-stylish": "^2.0.0"
   }
 }
