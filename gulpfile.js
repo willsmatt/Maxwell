@@ -133,7 +133,7 @@ gulp.task("images:min", function() {
   return gulp.src("./assets/images_raw/**/*")
     .pipe(changed("./assets/images"))
     .pipe(imagemin([
-        imageminPngquant({ quality: 60 }),
+        imageminPngquant({ quality: 90 }),
         imagemin.gifsicle({ interlaced: true }),
         imagemin.jpegtran({ progressive: true }),
         imagemin.svgo({ plugins: [{ removeViewBox: true }, { cleanupIDs: false }]})
